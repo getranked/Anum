@@ -1,0 +1,51 @@
+﻿@model MvcApplication1.Models.Task
+
+@{
+    ViewBag.Title = "Details";
+}
+<head>
+<style>
+  body {background-color:lightgrey}
+  h2   {color:white}
+  p    {color:green}
+  legend { color: white;}
+  div  {color:white}
+</style>
+</head>
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Task</legend>
+    
+   
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Due Date</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">Required Time</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Time)
+    </div>
+
+    <div class="display-label">Priority</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Priority)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

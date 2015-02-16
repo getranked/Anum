@@ -1,0 +1,125 @@
+﻿@model IEnumerable<MvcApplication1.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+     <script type="text/javascript" src="/Scripts/jquery-1.6.4.min.js"></script>
+    <script type= "text/javascript" src="http://www.google.com/jsapi"></script>
+<style>
+  body {background-color:lightgrey}
+  h2   {color:white}
+  div   {color:white}
+  p    {color:White}
+  legend { color: white;}
+  table  {color:white}
+  tr{color:black} 
+
+</style>
+</head>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new {style = "color:white"})
+</p>
+
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Required Time
+        </th>
+        <th>
+            Priority
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Title, null, new {style = "color:white"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date,null, new {style = "color:white"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time,null, new {style = "color:white"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority,null, new {style = "color:white"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>   
+    </tr>    
+}
+</table>
+<br />
+<br />
+<br />
+<div>
+ 
+ 
+ <p>
+      
+ <form method="post" class="form">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search" />
+</form>
+</p>
+      
+</div>
+<br />
+<br />
+<div> <span><p>Select View:</p></span>
+<span>
+<select id="Select1">
+<option>
+    
+  <div id="mychart" style="display:none;">     
+   <div id="chart_div" style="width:900px; height: 500px;"></div>
+</div>
+<div onclick="showChart();">click here to select view </div>
+    <option value="Tabular View">Tabular View</option>
+    <option value="Chart View">Chart View</option>
+</option>
+</select>
+    <script type="text/javascript">
+        
+       
+      $(document).ready(function() {
+          $.post("Task/GetChart", { chartTitle: "My Pie Chart",Title: "1,2,3,4", Priority: "A,B,C,D" }, function (data) {
+              $("ChartData").html(data);
+          });
+        })
+</script>
+        }
+   </script>
+    <div id="chart_div" style="width: 900px; height: 500px;">
+      </div>
+     
+
+</span>
+</div>
+
+     
